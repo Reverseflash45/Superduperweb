@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#1E3A8A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1150" cy="60" r="220" fill="#FACC15" fill-opacity="0.16"/>
+  <circle cx="60" cy="590" r="180" fill="#FFFFFF" fill-opacity="0.08"/>
+  <text x="80" y="250" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif" font-size="76" font-weight="800" fill="#FFFFFF">Super<tspan fill="#FACC15">Duper</tspan>Web</text>
+  <text x="80" y="330" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif" font-size="38" font-weight="600" fill="#DBEAFE">Jasa Pembuatan Website &amp; Aplikasi</text>
+  <text x="80" y="400" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif" font-size="30" font-weight="500" fill="#BFDBFE">untuk UMKM dan organisasi di Indonesia</text>
+  <rect x="80" y="470" width="320" height="70" rx="16" fill="#FACC15"/>
+  <text x="240" y="515" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif" font-size="28" font-weight="800" fill="#0F172A">Konsultasi Gratis</text>
+</svg>
