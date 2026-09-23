@@ -10,27 +10,57 @@
     --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 
-    /* Biru utama brand. */
-    --color-brand-50: #eff6ff;
-    --color-brand-100: #dbeafe;
-    --color-brand-200: #bfdbfe;
-    --color-brand-300: #93c5fd;
-    --color-brand-400: #60a5fa;
-    --color-brand-500: #3b82f6;
-    --color-brand-600: #2563eb;
-    --color-brand-700: #1d4ed8;
-    --color-brand-800: #1e40af;
-    --color-brand-900: #1e3a8a;
+    /*
+     * Teal-pinus: warna struktural utama (link, badge, ikon, border aktif).
+     * Kustom — bukan skala biru/indigo bawaan Tailwind manapun.
+     */
+    --color-brand-50: #f1f7f5;
+    --color-brand-100: #dcece6;
+    --color-brand-200: #b8d8cd;
+    --color-brand-300: #8fbeac;
+    --color-brand-400: #629d88;
+    --color-brand-500: #457e69;
+    --color-brand-600: #356355;
+    --color-brand-700: #2c5045;
+    --color-brand-800: #254136;
+    --color-brand-900: #1f352c;
 
-    /* Kuning aksen: hanya untuk tombol/highlight dengan teks gelap di atasnya. */
-    --color-accent-100: #fef9c3;
-    --color-accent-200: #fef08a;
-    --color-accent-300: #fde047;
-    --color-accent-400: #facc15;
-    --color-accent-500: #eab308;
+    /*
+     * Terracotta hangat: aksen CTA saja, dipakai dengan teks gelap di atasnya.
+     * Kustom — bukan skala kuning/oranye bawaan Tailwind manapun.
+     */
+    --color-accent-100: #fdf1e7;
+    --color-accent-200: #fbdcc0;
+    --color-accent-300: #f7c093;
+    --color-accent-400: #f2a066;
+    --color-accent-500: #ec7f3d;
 
-    --color-ink: #0f172a;
-    --color-canvas: #f8fafc;
+    --color-ink: #19140f;
+    --color-canvas: #faf7f2;
+
+    /*
+     * Netral hangat menggantikan skala "slate" biru-dingin bawaan Tailwind.
+     * Semua utility slate-* (text-slate-600, border-slate-200, dst) yang
+     * sudah dipakai di seluruh view otomatis ikut berubah lewat override ini.
+     */
+    --color-slate-50: #faf7f2;
+    --color-slate-100: #f2ece1;
+    --color-slate-200: #e3d8c9;
+    --color-slate-300: #cbb99e;
+    --color-slate-400: #a8926f;
+    --color-slate-500: #876f51;
+    --color-slate-600: #5c5142;
+    --color-slate-700: #453b30;
+    --color-slate-800: #332b23;
+    --color-slate-900: #241e18;
+
+    /*
+     * Skala radius lebih rapat & konsisten dibanding default Tailwind —
+     * kesan lebih "dirancang", bukan serba bulat generic.
+     */
+    --radius-xl: 0.625rem;
+    --radius-2xl: 0.875rem;
+    --radius-3xl: 1.25rem;
 }
 
 @layer base {
@@ -74,7 +104,7 @@
 
 /* Kartu dasar yang dipakai berulang di seluruh halaman publik. */
 @utility card-base {
-    border-radius: 1rem;
+    border-radius: var(--radius-2xl);
     border: 1px solid var(--color-slate-200);
     background-color: #ffffff;
 }
