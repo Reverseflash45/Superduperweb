@@ -38,12 +38,13 @@ npm run build          # atau: npm run dev
 php artisan serve
 ```
 
-Akun admin dari seeder: **admin@superduperweb.id** / **password**.
-Ganti kata sandinya sebelum dipakai sungguhan.
+Akun admin dari seeder (hanya di luar produksi): **admin@superduperweb.id** / **password**.
+Di produksi akun ini tidak dibuat; pakai `php artisan make:filament-user`.
 
-`db:seed` hanya mengisi konten yang memang dipakai di produksi: pengaturan, rekening, paket,
-FAQ, dan portofolio proyek asli (tangkapan layarnya ada di `database/seeders/gambar`). Untuk
-mencoba panel admin dengan data rekaan (testimoni, klien, brief, proyek, pembayaran, biaya):
+`db:seed` hanya mengisi konten yang memang dipakai di produksi: pengaturan, paket, FAQ, dan
+portofolio proyek asli (tangkapan layarnya ada di `database/seeders/gambar`). Untuk
+mencoba panel admin dengan data rekaan (rekening, QRIS, testimoni, klien, brief, proyek,
+pembayaran, biaya):
 
 ```bash
 php artisan db:seed --class=DemoSeeder   # hanya untuk lokal, jangan di produksi
@@ -54,6 +55,13 @@ jadi situs produksi tidak pernah menampilkan angka atau kutipan rekaan.
 
 > `APP_URL` harus sesuai dengan alamat yang dipakai di browser. Nilai ini dipakai untuk membangun
 > URL gambar di `/storage`, jadi kalau tidak cocok, gambar portofolio dan QRIS akan tampak rusak.
+
+## Menerbitkan
+
+Langkah memasang di hosting cPanel atau VPS ada di [DEPLOY.md](DEPLOY.md). Sebelum situs
+dibuka untuk klien, jalankan `php artisan superduperweb:cek-rilis`: perintah ini gagal
+selama masih ada sandi bawaan, nomor WhatsApp contoh, rekening/QRIS contoh, atau data
+rekaan dari `DemoSeeder`.
 
 ## Menjalankan pengujian
 

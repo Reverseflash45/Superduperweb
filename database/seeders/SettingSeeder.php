@@ -9,8 +9,6 @@ class SettingSeeder extends Seeder
 {
     public function run(): void
     {
-        $qris = DummyImage::qris('pengaturan/qris-superduperweb.svg');
-
         $terms = <<<'HTML'
         <h2>Syarat &amp; Ketentuan Layanan</h2>
         <p>Dengan menggunakan jasa SuperDuperWeb, klien dianggap telah membaca dan menyetujui ketentuan di bawah ini.</p>
@@ -47,7 +45,7 @@ class SettingSeeder extends Seeder
             'instagram_url' => 'https://instagram.com/superduperweb',
             'facebook_url' => 'https://facebook.com/superduperweb',
             'tiktok_url' => 'https://tiktok.com/@superduperweb',
-            'qris_image' => $qris,
+            'qris_image' => '',
             'terms_content' => $terms,
             'google_analytics_id' => '',
             'min_completed_projects_for_stats' => '3',
