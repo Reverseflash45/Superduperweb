@@ -15,6 +15,7 @@ use App\Models\Project;
 use App\Models\Setting;
 use App\Models\Testimonial;
 use Database\Seeders\DatabaseSeeder;
+use Database\Seeders\DemoSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,7 @@ class PublicPagesTest extends TestCase
     {
         parent::setUp();
 
-        $this->seed(DatabaseSeeder::class);
+        $this->seed([DatabaseSeeder::class, DemoSeeder::class]);
     }
 
     public function test_semua_halaman_publik_bisa_dibuka(): void

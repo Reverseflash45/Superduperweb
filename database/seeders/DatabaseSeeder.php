@@ -24,9 +24,10 @@ class DatabaseSeeder extends Seeder
             BankAccountSeeder::class,
             PackageSeeder::class,
             PortfolioSeeder::class,
-            TestimonialSeeder::class,
             FaqSeeder::class,
-            OperationalSeeder::class,
         ]);
+
+        // Testimoni dan data operasional rekaan hanya untuk lokal/pengujian:
+        // php artisan db:seed --class=DemoSeeder
     }
 }

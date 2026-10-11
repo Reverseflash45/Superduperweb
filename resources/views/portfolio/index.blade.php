@@ -20,8 +20,9 @@
                 Portofolio
             </h1>
             <p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-                Setiap proyek di sini punya cerita lengkapnya: masalah yang dihadapi klien, solusi yang kami bangun,
-                dan teknologi yang dipakai. Klik salah satu untuk melihat detailnya.
+                Setiap proyek di sini punya cerita lengkapnya: masalah yang diselesaikan, solusi yang kami bangun,
+                dan teknologi yang dipakai. Label di tiap kartu menunjukkan apakah itu proyek klien atau proyek
+                pribadi. Klik salah satu untuk melihat detailnya.
             </p>
         </div>
     </section>

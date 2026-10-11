@@ -3,8 +3,8 @@
         <div class="container-page">
             <x-section-heading
                 eyebrow="Portofolio"
-                title="Proyek terbaru yang sudah kami kerjakan"
-                subtitle="Setiap proyek punya cerita: masalah apa yang dihadapi klien dan bagaimana kami menyelesaikannya." />
+                title="Proyek yang sudah kami bangun"
+                subtitle="Setiap proyek punya cerita: masalah apa yang diselesaikan dan bagaimana caranya. Sebagian bisa langsung kamu coba." />
 
             <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($portfolios as $portfolio)

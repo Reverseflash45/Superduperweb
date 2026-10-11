@@ -14,6 +14,7 @@ use App\Models\Setting;
 use App\Models\Testimonial;
 use App\Models\User;
 use Database\Seeders\DatabaseSeeder;
+use Database\Seeders\DemoSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -27,7 +28,7 @@ class AdminPanelTest extends TestCase
     {
         parent::setUp();
 
-        $this->seed(DatabaseSeeder::class);
+        $this->seed([DatabaseSeeder::class, DemoSeeder::class]);
         $this->admin = User::query()->firstOrFail();
     }
 
@@ -77,8 +78,8 @@ class AdminPanelTest extends TestCase
     public function test_seeder_mengisi_seluruh_tabel_konten(): void
     {
         $this->assertSame(8, Package::count());
-        $this->assertSame(8, Portfolio::count());
-        $this->assertSame(24, Portfolio::query()->withCount('images')->get()->sum('images_count'));
+        $this->assertSame(5, Portfolio::count());
+        $this->assertSame(10, Portfolio::query()->withCount('images')->get()->sum('images_count'));
         $this->assertSame(6, Testimonial::count());
         $this->assertSame(10, Faq::count());
         $this->assertNotEmpty(Setting::get('hero_title'));

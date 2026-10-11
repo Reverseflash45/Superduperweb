@@ -115,7 +115,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0 3.75h.007M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                     </svg>
                                 </span>
-                                Masalah klien
+                                {{ $portfolio->project_type === \App\Enums\PortfolioType::Client ? 'Masalah klien' : 'Masalahnya' }}
                             </h2>
                             <p class="mt-4 whitespace-pre-line text-base leading-relaxed text-slate-700">{{ $portfolio->problem }}</p>
                         </div>

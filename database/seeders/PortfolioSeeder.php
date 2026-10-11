@@ -6,148 +6,126 @@ use App\Enums\PortfolioCategory;
 use App\Enums\PortfolioType;
 use App\Models\Portfolio;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+/**
+ * Portofolio awal berisi proyek yang benar-benar sudah dibangun dan bisa dicek
+ * (repo publik, sebagian bisa dicoba langsung). Tangkapan layarnya ada di
+ * database/seeders/gambar dan disalin ke disk public saat seeding.
+ *
+ * Proyek klien ditambahkan lewat panel admin begitu ada.
+ */
 class PortfolioSeeder extends Seeder
 {
     public function run(): void
     {
         $items = [
             [
-                'title' => 'Kopi Kenangan Senja',
+                'title' => 'UMR: Peta Upah vs Biaya Hidup',
+                'gambar' => 'umr',
                 'category' => PortfolioCategory::Web,
-                'project_type' => PortfolioType::Client,
-                'client_name' => 'Kopi Kenangan Senja, Yogyakarta',
-                'summary' => 'Website company profile kedai kopi dengan menu digital dan reservasi meja lewat WhatsApp.',
-                'problem' => 'Kedai hanya mengandalkan Instagram. Calon pelanggan sering bertanya hal yang sama soal menu, harga, dan jam buka, dan tim harus membalas satu per satu setiap hari.',
-                'solution' => 'Kami bangun website ringan dengan menu digital yang bisa diperbarui sendiri lewat panel admin, tombol reservasi langsung ke WhatsApp berisi detail pesanan, dan halaman lokasi terintegrasi Google Maps.',
-                'features' => ['Menu digital dengan kategori', 'Reservasi meja via WhatsApp', 'Galeri suasana kedai', 'Integrasi Google Maps', 'Panel admin untuk update menu'],
-                'tech_stack' => ['Laravel', 'Tailwind CSS', 'Alpine.js', 'MySQL'],
-                'demo_url' => 'https://demo.superduperweb.id/kopi-kenangan-senja',
-                'completed_at' => '2026-07-18',
-                'color' => ['#0F766E', '#134E4A'],
+                'project_type' => PortfolioType::Personal,
+                'summary' => 'Peta 514 kabupaten/kota yang membandingkan upah minimum 2026 dengan estimasi biaya hidup setempat.',
+                'problem' => 'Angka UMK tersebar di puluhan SK gubernur, sementara orang yang mau pindah kerja ingin tahu satu hal sederhana: gaji segini cukup nggak untuk hidup di sana?',
+                'solution' => 'Data UMK dari SK 38 provinsi dikumpulkan, garis kemiskinan BPS diekstrak dari PDF sebagai indeks harga, lalu semuanya digambar sebagai peta interaktif. Ketuk satu daerah untuk melihat struk bulanan yang bisa dibagikan sebagai gambar. Semua asumsi dibuka di halaman metode.',
+                'features' => ['Peta interaktif 514 daerah', 'Hitung dengan UMK, gaji sendiri, atau upah kota asal', 'Profil lajang, berdua, keluarga', 'Gaji bersih setelah BPJS & PPh 21', 'Struk bulanan bisa dibagikan', 'Halaman metode & uji sensitivitas'],
+                'tech_stack' => ['TypeScript', 'D3', 'Vite', 'Python'],
+                'demo_url' => 'https://umr.raffstw.my.id',
+                'completed_at' => '2026-10-11',
+                'galeri' => ['thumb' => 'Peta dan struk bulanan', '1' => 'Halaman utama', '2' => 'Halaman metode'],
             ],
             [
-                'title' => 'Batik Ayu Nusantara',
+                'title' => 'Pendekin',
+                'gambar' => 'pendekin',
                 'category' => PortfolioCategory::Web,
-                'project_type' => PortfolioType::Client,
-                'client_name' => 'Batik Ayu Nusantara, Pekalongan',
-                'summary' => 'Toko online batik tulis dengan pembayaran otomatis dan ongkir real-time ke seluruh Indonesia.',
-                'problem' => 'Penjualan masih lewat chat. Pemilik kewalahan menghitung ongkir manual, stok sering bentrok karena dijual di beberapa marketplace sekaligus.',
-                'solution' => 'Kami buat toko online dengan stok terpusat, perhitungan ongkir otomatis dari RajaOngkir, dan pembayaran QRIS serta virtual account. Pesanan masuk langsung terkirim ke WhatsApp admin.',
-                'features' => ['Katalog 200+ produk', 'Checkout & keranjang', 'Payment gateway QRIS dan VA', 'Ongkir otomatis RajaOngkir', 'Kupon diskon', 'Laporan penjualan'],
-                'tech_stack' => ['Laravel', 'Livewire', 'Tailwind CSS', 'MySQL', 'Midtrans'],
-                'demo_url' => 'https://demo.superduperweb.id/batik-ayu',
-                'completed_at' => '2026-06-02',
-                'color' => ['#9333EA', '#6B21A8'],
+                'project_type' => PortfolioType::Personal,
+                'summary' => 'Pemendek URL massal: sampai 20 tautan sekaligus, lengkap dengan QR code dan statistik klik.',
+                'problem' => 'Pemendek URL gratis biasanya satu per satu, memaksa daftar akun, dan statistiknya ikut menghitung bot pratinjau WhatsApp sehingga angkanya menggelembung.',
+                'solution' => 'Tempel sampai 20 URL atau impor CSV, langsung dapat tautan pendek, QR code, dan statistik per tautan. Semua penulisan lewat fungsi Postgres yang memvalidasi di basis data, bot pratinjau tidak dihitung, dan alamat IP tidak pernah disimpan.',
+                'features' => ['Sampai 20 URL sekali proses', 'Impor CSV & ekspor hasil', 'Alias kustom & kedaluwarsa', 'QR code per tautan', 'Grafik klik, negara, perujuk, perangkat', 'Tanpa akun'],
+                'tech_stack' => ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'Tailwind CSS'],
+                'demo_url' => 'https://pendek.raffstw.my.id',
+                'completed_at' => '2026-09-21',
+                'galeri' => ['thumb' => 'Hasil dan statistik klik', '1' => 'Form pemendek massal'],
             ],
             [
-                'title' => 'SIM Koperasi Sejahtera',
-                'category' => PortfolioCategory::CustomSystem,
-                'project_type' => PortfolioType::Client,
-                'client_name' => 'Koperasi Karyawan Sejahtera, Semarang',
-                'summary' => 'Sistem informasi simpan pinjam anggota koperasi, lengkap dengan angsuran dan laporan SHU.',
-                'problem' => 'Pencatatan simpanan dan pinjaman masih pakai Excel yang dipegang satu orang. Rekap bulanan makan waktu berhari-hari dan rawan salah hitung bunga.',
-                'solution' => 'Kami bangun sistem dengan data anggota terpusat, perhitungan angsuran dan bunga otomatis, riwayat transaksi per anggota, serta laporan bulanan dan SHU yang bisa diekspor ke Excel dan PDF.',
-                'features' => ['Manajemen anggota', 'Simpanan pokok, wajib, sukarela', 'Pengajuan & persetujuan pinjaman', 'Jadwal angsuran otomatis', 'Laporan SHU', 'Hak akses bertingkat', 'Ekspor Excel & PDF'],
-                'tech_stack' => ['Laravel', 'Filament', 'MySQL', 'Chart.js'],
-                'demo_url' => null,
-                'completed_at' => '2026-05-20',
-                'color' => ['#2563EB', '#1E3A8A'],
-            ],
-            [
-                'title' => 'Warung Pintar POS',
-                'category' => PortfolioCategory::Mobile,
-                'project_type' => PortfolioType::Client,
-                'client_name' => 'Warung Pintar Grup, Surabaya',
-                'summary' => 'Aplikasi kasir Android untuk 12 cabang warung, bisa jalan saat internet mati.',
-                'problem' => 'Kasir di cabang sering kehilangan transaksi saat internet putus, dan pemilik tidak bisa melihat penjualan antar cabang secara real-time.',
-                'solution' => 'Kami buat aplikasi Flutter dengan mode offline-first: transaksi disimpan lokal lalu tersinkron otomatis saat internet kembali. Pemilik punya dashboard web untuk memantau seluruh cabang.',
-                'features' => ['Kasir offline-first', 'Sinkronisasi otomatis', 'Cetak struk Bluetooth', 'Manajemen stok per cabang', 'Dashboard pemilik', 'Laporan harian per kasir'],
-                'tech_stack' => ['Flutter', 'Dart', 'Go', 'PostgreSQL', 'Figma'],
-                'demo_url' => 'https://demo.superduperweb.id/warung-pintar',
-                'completed_at' => '2026-04-11',
-                'color' => ['#EA580C', '#9A3412'],
-            ],
-            [
-                'title' => 'Yayasan Cahaya Harapan',
-                'category' => PortfolioCategory::Web,
-                'project_type' => PortfolioType::Client,
-                'client_name' => 'Yayasan Cahaya Harapan, Bandung',
-                'summary' => 'Website yayasan sosial dengan halaman donasi, laporan penggunaan dana, dan agenda kegiatan.',
-                'problem' => 'Donatur ragu berdonasi karena tidak ada tempat resmi untuk melihat program dan laporan penggunaan dana. Semua info tersebar di grup WhatsApp.',
-                'solution' => 'Kami buat website dengan halaman program donasi, progres terkumpul yang diperbarui otomatis, laporan transparansi yang bisa diunduh, dan agenda kegiatan yang dikelola pengurus sendiri.',
-                'features' => ['Halaman program donasi', 'Progress bar dana terkumpul', 'Laporan transparansi unduhan', 'Agenda kegiatan', 'Galeri dokumentasi', 'Newsletter relawan'],
-                'tech_stack' => ['Laravel', 'Tailwind CSS', 'Alpine.js', 'MySQL'],
-                'demo_url' => 'https://demo.superduperweb.id/cahaya-harapan',
-                'completed_at' => '2026-03-08',
-                'color' => ['#0891B2', '#155E75'],
-            ],
-            [
-                'title' => 'Absensi Wajah Sekolah',
-                'category' => PortfolioCategory::CustomSystem,
-                'project_type' => PortfolioType::Demo,
-                'client_name' => null,
-                'summary' => 'Demo sistem absensi siswa berbasis pengenalan wajah dengan notifikasi WhatsApp ke orang tua.',
-                'problem' => 'Absensi manual dengan buku membuat rekap kehadiran terlambat dan orang tua baru tahu anaknya bolos saat pembagian rapor.',
-                'solution' => 'Prototipe ini memakai kamera untuk mengenali wajah siswa saat masuk gerbang, mencatat kehadiran otomatis, dan mengirim notifikasi WhatsApp ke orang tua dalam hitungan detik.',
-                'features' => ['Pengenalan wajah', 'Rekap kehadiran harian', 'Notifikasi WhatsApp ke orang tua', 'Rekap per kelas & mata pelajaran', 'Ekspor laporan bulanan'],
-                'tech_stack' => ['Laravel', 'Go', 'Python', 'MySQL', 'Figma'],
-                'demo_url' => 'https://demo.superduperweb.id/absensi-wajah',
-                'completed_at' => '2026-02-14',
-                'color' => ['#4F46E5', '#312E81'],
-            ],
-            [
-                'title' => 'Tani Cerdas Marketplace',
+                'title' => 'Tracking',
+                'gambar' => 'tracking',
                 'category' => PortfolioCategory::Mobile,
                 'project_type' => PortfolioType::Personal,
-                'client_name' => null,
-                'summary' => 'Proyek pribadi: aplikasi yang mempertemukan petani langsung dengan pembeli grosir.',
-                'problem' => 'Petani kecil kesulitan menembus pembeli besar dan harus lewat banyak tengkulak, sehingga harga jual di tingkat petani jatuh.',
-                'solution' => 'Aplikasi ini menampilkan harga pasar harian, memungkinkan petani memasang stok panen, dan pembeli grosir menawar langsung. Transaksi dijaga sistem escrow sederhana.',
-                'features' => ['Harga pasar harian', 'Pasang stok panen', 'Negosiasi harga dalam aplikasi', 'Escrow pembayaran', 'Rating penjual & pembeli'],
-                'tech_stack' => ['React Native', 'TypeScript', 'Go', 'PostgreSQL'],
-                'demo_url' => 'https://demo.superduperweb.id/tani-cerdas',
-                'completed_at' => '2026-01-22',
-                'color' => ['#16A34A', '#14532D'],
+                'summary' => 'Aplikasi Android yang menyatukan jadwal kuliah, tugas, latihan, lari, makan, tidur, dan keuangan.',
+                'problem' => 'Jadwal, tugas, catatan gym, dan pengeluaran tersebar di lima aplikasi berbeda, dan sebagian besar tidak bisa dibuka di ruang kuliah tanpa sinyal.',
+                'solution' => 'Satu aplikasi Flutter dengan backend Supabase dan Row Level Security. Data terakhir disimpan lokal supaya tetap terbuka tanpa sinyal, dan catatan baru (misalnya lari 10 km di jalur tanpa sinyal) diantrekan sampai online. KRS dibaca AI lewat Edge Function, dengan OCR di HP sebagai cadangan.',
+                'features' => ['Impor KRS dengan AI + OCR', 'Deteksi jadwal bentrok', 'Hitung repetisi lewat kamera', 'Lari GPS dengan rute di peta', 'Keuangan & baca struk', 'Mode offline, widget, kunci sidik jari', '1.059 test otomatis'],
+                'tech_stack' => ['Flutter', 'Dart', 'Supabase', 'ML Kit', 'Edge Functions'],
+                'demo_url' => 'https://github.com/Reverseflash45/Tracking/releases/latest',
+                'completed_at' => '2026-10-06',
+                'galeri' => ['thumb' => 'Tugas, Beranda, dan Workout'],
             ],
             [
-                'title' => 'Laundry Kilat Management',
+                'title' => 'Postur',
+                'gambar' => 'postur',
+                'category' => PortfolioCategory::Mobile,
+                'project_type' => PortfolioType::Personal,
+                'summary' => 'Deteksi kesalahan postur squat dan push-up dari kamera, di Android dan di browser.',
+                'problem' => 'Latihan sendiri tanpa pelatih membuat kesalahan bentuk (lutut masuk ke dalam, pinggul turun) tidak ketahuan sampai cedera.',
+                'solution' => 'Pose 33 titik diolah menjadi deret waktu sudut sendi, dipotong per repetisi, lalu dinilai di perangkat oleh empat model: aturan ambang, Random Forest, 1D-CNN, dan LSTM. Versi web memakai MediaPipe dan berkas model yang sama, jadi bisa dicoba langsung dengan webcam tanpa instalasi.',
+                'features' => ['Hitung repetisi & nilai bentuk per repetisi', 'Bagian tubuh yang salah disorot', 'Umpan balik suara', 'Versi web dengan webcam', 'Mode rekam & label dataset', 'Model berjalan di perangkat, video tidak diunggah'],
+                'tech_stack' => ['Flutter', 'Python', 'TensorFlow Lite', 'MediaPipe', 'scikit-learn'],
+                'demo_url' => 'https://postur-tau.vercel.app',
+                'completed_at' => '2026-10-12',
+                'galeri' => ['thumb' => 'Latihan, kerangka, dan ringkasan', '1' => 'Versi web'],
+            ],
+            [
+                'title' => 'Sentimen Emiten',
+                'gambar' => 'sentimen',
                 'category' => PortfolioCategory::CustomSystem,
-                'project_type' => PortfolioType::Client,
-                'client_name' => 'Laundry Kilat, Malang',
-                'summary' => 'Sistem manajemen laundry dengan tracking status cucian dan notifikasi otomatis ke pelanggan.',
-                'problem' => 'Pelanggan sering menelepon menanyakan cucian sudah selesai atau belum, dan nota kertas kerap hilang sehingga terjadi salah ambil.',
-                'solution' => 'Kami buat sistem dengan nota digital berkode unik. Pelanggan bisa cek status lewat link, dan sistem mengirim notifikasi WhatsApp otomatis begitu cucian siap diambil.',
-                'features' => ['Nota digital berkode QR', 'Tracking status cucian', 'Notifikasi WhatsApp otomatis', 'Manajemen layanan & harga', 'Laporan omzet harian', 'Member & poin loyalitas'],
-                'tech_stack' => ['Laravel', 'Filament', 'Tailwind CSS', 'MySQL'],
-                'demo_url' => 'https://demo.superduperweb.id/laundry-kilat',
-                'completed_at' => '2025-12-05',
-                'color' => ['#0EA5E9', '#075985'],
+                'project_type' => PortfolioType::Personal,
+                'summary' => 'Dasbor sentimen berita 45 emiten LQ45, disandingkan dengan pergerakan harga sahamnya.',
+                'problem' => 'Berita emiten datang dari banyak portal sekaligus, dan sulit melihat apakah nada beritanya benar-benar sejalan dengan harga saham.',
+                'solution' => 'Berita dikumpulkan dari 7 portal lewat RSS yang patuh robots.txt, dipetakan ke emiten, diverifikasi ke keterbukaan informasi BEI, lalu diberi skor sentimen harian dan diuji korelasinya dengan harga. Pengklasifikasinya bisa ditukar tanpa mengubah pipeline.',
+                'features' => ['Pengumpulan berita otomatis dari 7 portal', 'Pemetaan berita ke emiten', 'Verifikasi ke pengumuman resmi BEI', 'Korelasi & uji Granger', 'Dasbor web + REST API', '252 test otomatis'],
+                'tech_stack' => ['Python', 'FastAPI', 'SQLAlchemy', 'NLP'],
+                'demo_url' => 'https://sentimen.raffstw.my.id',
+                'completed_at' => '2026-10-04',
+                'galeri' => ['thumb' => 'Peringkat dan grafik sentimen', '1' => 'Detail emiten'],
             ],
         ];
 
         foreach ($items as $index => $item) {
-            [$from, $to] = $item['color'];
-            unset($item['color']);
+            $gambar = $item['gambar'];
+            $galeri = $item['galeri'];
+            unset($item['gambar'], $item['galeri']);
 
             $slug = Str::slug($item['title']);
             $item['slug'] = $slug;
+            $item['client_name'] = null;
             $item['is_published'] = true;
             $item['sort_order'] = $index + 1;
-            $item['thumbnail'] = DummyImage::make("portofolio/{$slug}-thumb.svg", $item['title'], $from, $to);
+            $item['thumbnail'] = self::salin("{$gambar}-thumb", $slug);
 
             $portfolio = Portfolio::query()->updateOrCreate(['slug' => $slug], $item);
 
             $portfolio->images()->delete();
 
-            foreach (['Tampilan Beranda', 'Halaman Utama Fitur', 'Panel Admin'] as $order => $caption) {
+            $urutan = 0;
+            foreach ($galeri as $kunci => $caption) {
                 $portfolio->images()->create([
-                    'path' => DummyImage::make("portofolio/{$slug}-{$order}.svg", $caption, $from, $to, 1600, 1000),
+                    'path' => $kunci === 'thumb' ? $item['thumbnail'] : self::salin("{$gambar}-{$kunci}", $slug),
                     'caption' => $caption,
-                    'sort_order' => $order + 1,
+                    'sort_order' => ++$urutan,
                 ]);
             }
         }
+    }
+
+    /** Salin tangkapan layar dari repo ke disk public, kembalikan path-nya. */
+    private static function salin(string $nama, string $slug): string
+    {
+        $tujuan = "portofolio/{$slug}/{$nama}.webp";
+        Storage::disk('public')->put($tujuan, file_get_contents(__DIR__."/gambar/{$nama}.webp"));
+
+        return $tujuan;
     }
 }

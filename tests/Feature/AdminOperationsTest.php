@@ -23,6 +23,7 @@ use App\Models\Project;
 use App\Models\ProjectExpense;
 use App\Models\User;
 use Database\Seeders\DatabaseSeeder;
+use Database\Seeders\DemoSeeder;
 use Filament\Actions\Testing\TestAction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
@@ -39,7 +40,7 @@ class AdminOperationsTest extends TestCase
     {
         parent::setUp();
 
-        $this->seed(DatabaseSeeder::class);
+        $this->seed([DatabaseSeeder::class, DemoSeeder::class]);
         $this->admin = User::query()->firstOrFail();
         $this->actingAs($this->admin);
     }
