@@ -85,7 +85,7 @@ class PortfolioSeeder extends Seeder
                 'summary' => 'Dasbor sentimen berita 45 emiten LQ45, disandingkan dengan pergerakan harga sahamnya.',
                 'problem' => 'Berita emiten datang dari banyak portal sekaligus, dan sulit melihat apakah nada beritanya benar-benar sejalan dengan harga saham.',
                 'solution' => 'Berita dikumpulkan dari 7 portal lewat RSS yang patuh robots.txt, dipetakan ke emiten, diverifikasi ke keterbukaan informasi BEI, lalu diberi skor sentimen harian dan diuji korelasinya dengan harga. Pengklasifikasinya bisa ditukar tanpa mengubah pipeline.',
-                'features' => ['Pengumpulan berita otomatis dari 7 portal', 'Pemetaan berita ke emiten', 'Verifikasi ke pengumuman resmi BEI', 'Korelasi & uji Granger', 'Dasbor web + REST API', '252 test otomatis'],
+                'features' => ['Pengumpulan berita otomatis dari 7 portal', 'Pemetaan berita ke emiten', 'Verifikasi ke pengumuman resmi BEI', 'Korelasi & uji Granger', 'Dasbor web + REST API', '261 test otomatis'],
                 'tech_stack' => ['Python', 'FastAPI', 'SQLAlchemy', 'NLP'],
                 'demo_url' => 'https://sentimen.raffstw.my.id',
                 'completed_at' => '2026-10-04',
